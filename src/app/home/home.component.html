@@ -1,0 +1,36 @@
+<section class="songs-list">
+	
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-8">
+
+          <h1 class="heading">Top 100 albums</h1>
+
+        </div>
+        <div class="col-12 col-md-4">
+        	 <input name="title" [(ngModel)]="searchText" class="form-control mr-sm-2" type="search" placeholder="Search for albums" aria-label="Search for albums">
+        </div>
+        <div class="col-6 col-lg-3 col-md-4" *ngFor="let song of songs | filter : searchText" [ngsReveal]="{ reset: true}">
+          <a href="{{song.link.attributes.href}}">
+            <div class="card">
+              <div class="img-details">
+              	<img class="card-img-top" src="{{song['im:image'][2]['label']}}" alt="">
+              	<div class="details">
+              		<p>{{song.category.attributes.term}}</p>
+              		<p>Release date {{song['im:releaseDate'].attributes.label}}</p>
+              		<p>Rights {{song.rights.label}}</p>
+              	</div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{song.title.label}}</h5>
+                <p class="card-text">{{song['im:artist']['label']}}</p>
+              </div>
+              <p class="price">{{song['im:price']['label']}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
